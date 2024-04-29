@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Запретить горизонтальный скролл */
+}
+
+h2 {
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px; /* 1.25rem в пикселях */
+}
+
+h3 {
+    text-align: center;
+    margin: auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0; /* 1.25rem сверху и снизу */
+    text-align: center;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* 1.25rem в пикселях */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 80px; /* 5rem в пикселях */
+    padding: 20px; /* 1.25rem в пикселях */
+}
+
+.rounded-box {
+    padding: 20px; /* 1.25rem в пикселях */
+    border-radius: 10px; /* 0.625rem в пикселях */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 0.625rem в пикселях */
+    max-width: 1000px; /* 62.5rem в пикселях */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: inherit;
+    height: inherit;
+}
+
+.event {
+    width: calc(40% - 20px); /* 1.25rem в пикселях */
+    margin: auto auto 20px; /* 1.25rem в пикселях */
+    padding: 20px; /* 1.25rem в пикселях */
+    border: 1px solid #ccc; /* 0.0625rem в пикселях */
+    border-radius: 10px; /* 0.625rem в пикселях */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 0.3125rem в пикселях */
+    background-color: #fff;
+}
+
+.pagination {
+    align-content: center;
+    text-align: center;
+    margin: auto;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px; /* 0.625rem сверху и снизу, 1.25rem слева и справа */
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Дополненные классы */
+
+.register-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.button_left {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.button_right {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+/*************************************************/
+.reg-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reg-container h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: calc(100% - 20px); /* Вычитаем ширину отступов слева и справа */
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-right: 10px; /* Отступ справа для создания промежутка */
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
