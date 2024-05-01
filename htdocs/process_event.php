@@ -3,7 +3,7 @@ session_start(); // Начинаем сеанс
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "a785410a";
 $dbname = "events";
 
 // Создание подключения к базе данных

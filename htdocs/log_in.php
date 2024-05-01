@@ -3,7 +3,7 @@ session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "a785410a";
 $dbname = "events";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -32,15 +32,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Вставка нового пользователя в таблицу
-    $sql = "INSERT INTO accounts (username, password, full_name, gender, contact_info) VALUES ('$username', '$hashed_password', '$full_name', '$gender', '$contact_info')";
-    if ($conn->query($sql) === TRUE) {
+    $sqlreg = "INSERT INTO accounts (username, password, full_name, gender, contact_info) VALUES ('$username', '$hashed_password', '$full_name', '$gender', '$contact_info')";
+    $stmt = $conn->prepare($sqlreg);
+    $stmt ->bind_param("ssss", $username, $hashed_password, $full_name, $gender, $contact_info);
+    if ($stmt->execute()) {
         echo "Регистрация прошла успешно";
         header("Location: pages/logIn.php");
         exit();
     } else {
-        echo "Ошибка при регистрации: " . $conn->error;
+        $err = "Ошибка при регистрации: " . $conn->error;
+        echo $err;
     }
-
 }
 
 // Авторизация пользователя

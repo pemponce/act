@@ -10,7 +10,7 @@ if (!isset($_SESSION['login_user'])) {
 // Подключение к базе данных (замените данными вашей базы)
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "a785410a";
 $dbname = "events";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

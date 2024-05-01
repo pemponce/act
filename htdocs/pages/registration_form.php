@@ -2,7 +2,8 @@
 // Получаем event_id из параметров URL
 $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -27,8 +28,7 @@ $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
 </header>
 <div class="reg-container">
     <h2>Регистрация на мероприятие</h2>
-    <form id="registrationForm" method="POST"> <!-- Добавлен event_id в параметры формы -->
-        <?php include '../reg_form.php' ?>
+    <form id="registrationForm" method="POST" onsubmit="submitForm(event)"> <!-- Добавлен event_id в параметры формы -->
         <div class="input-group">
             <label for="name">ФИО:</label>
             <input type="text" id="name" name="name" required>
@@ -42,7 +42,6 @@ $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
 </div>
 
 <!-- Модальное окно для отображения ошибки -->
-<!-- Модальное окно -->
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -64,16 +63,14 @@ $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
         background-color: rgba(0, 0, 0, 0.4); /* Черный цвет фона с прозрачностью */
     }
 
-    /* Контент модального окна */
     .modal-content {
         background-color: #fefefe;
         margin: 15% auto; /* 15% от верхнего края экрана */
         padding: 20px;
         border: 1px solid #888;
-        width: 80%; /* Ширина контента */
+        width: 40%; /* Ширина контента */
     }
 
-    /* Закрыть кнопку */
     .close {
         color: #aaa;
         float: right;
@@ -89,26 +86,47 @@ $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
     }
 </style>
 
+<!-- JavaScript для модального окна -->
 <script>
-    // Функция для отображения модального окна и заполнения информацией о мероприятии
     function showModal(err) {
-        // Заполнение информации о мероприятии
         document.getElementById("modal-err").innerHTML = err;
-
-        // Отображение модального окна
         document.getElementById("modal").style.display = "block";
     }
 
-    // Закрытие модального окна при нажатии на крестик
     document.getElementsByClassName("close")[0].onclick = function () {
         document.getElementById("modal").style.display = "none";
     }
 
-    // Закрытие модального окна при клике за его пределами
     window.onclick = function (event) {
         if (event.target == document.getElementById("modal")) {
             document.getElementById("modal").style.display = "none";
         }
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+        var form = document.getElementById('registrationForm');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../reg_form.php?event_id=<?php echo $event_id; ?>', true);
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var response = xhr.responseText;
+                if (response.includes('Ошибка')) {
+                    showModal(response);
+                } else {
+                    window.location.href = 'home.php';
+                }
+            } else {
+                window.location.href = 'home.php';
+
+            }
+        };
+        xhr.onerror = function () {
+            console.error('Произошла ошибка при отправке запроса.');
+        };
+        xhr.send(formData);
     }
 </script>
 </body>

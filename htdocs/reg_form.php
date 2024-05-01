@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Проверяем, были ли заполнены обязательные поля
     if (empty($_POST['name']) || empty($_POST['contact_info'])) {
         $errorMessage = "Пожалуйста, заполните все обязательные поля.";
-        echo "<script>showModal('$errorMessage');</script>";
+        echo $errorMessage;
         exit(); // Останавливаем выполнение скрипта
     }
 
@@ -76,11 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             $errorMessage = "Ошибка при вставке данных в таблицу participant: " . $stmt->error;
-            echo "<script>showModal('$errorMessage')</script>";
+            echo "<div>$errorMessage</div>";
         }
     } else {
         $errorMessage = "Ошибка при вставке данных в таблицу participant: " . $stmt->error;
-        echo "<script>showModal('$errorMessage')</script>";
+        echo "<div>$errorMessage</div>";
     }
 
     // Закрытие соединения с базой данных
