@@ -21,7 +21,9 @@ $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
             <li><a href="contact.php">Контакты</a></li>
             <li><a href="profile.php">Личный кабинет</a></li>
             <li><a href="logIn.php">Вход</a></li>
-            <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i><img style="width: 50px; height: 30px" src="../img/exit-svgrepo-com.svg"></a></li>
+            <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i><img style="width: 50px; height: 30px"
+                                                                                src="../img/exit-svgrepo-com.svg"></a>
+            </li>
 
         </ul>
     </nav>

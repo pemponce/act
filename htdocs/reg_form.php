@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: home.php");
             exit();
         } else {
-            $errorMessage = "Ошибка при вставке данных в таблицу participant: " . $stmt->error;
+            $errorMessage = "Ошибка при вставке данных в таблицу registration: " . $stmt->error;
             echo "<div>$errorMessage</div>";
         }
     } else {

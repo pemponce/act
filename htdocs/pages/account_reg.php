@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,20 +17,23 @@
             <li><a href="profile.php">Личный кабинет</a></li>
             <li><a href="logIn.php">Вход</a></li>
             <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
-            <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i><img style="width: 50px; height: 30px" src="../img/exit-svgrepo-com.svg"></a></li>
+            <li><a href="../logout.php"><i class="fas fa-sign-out-alt"></i><img style="width: 50px; height: 30px"
+                                                                                src="../img/exit-svgrepo-com.svg"></a>
+            </li>
         </ul>
     </nav>
 </header>
 <div class="content" style="text-align: center">
     <div class="rounded-box">
         <h2>Регистрация</h2>
+
         <form id="acc_round" method="POST" onsubmit="submitForm(event)">
-            <input type="text" name="reg_username" placeholder="Имя пользователя" required><br>
-            <input type="password" name="reg_password" placeholder="Пароль" required><br>
-            <input type="text" name="full_name" placeholder="Полное имя" required><br>
-            <input type="text" name="gender" placeholder="Пол" required><br>
-            <input type="text" name="contact_info" placeholder="Контактная информация" required><br>
-            <input type="submit" name="register" value="Зарегистрироваться">
+            <input type="text" id="username" name="username" required><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="text" id="full_name" name="full_name" required><br>
+            <input type="text" id="gender" name="gender" required><br>
+            <input type="text" id="contact_info" name="contact_info" required><br>
+            <input type="submit" id="register" name="register" value="Зарегистрироваться">
         </form>
     </div>
 </div>
@@ -92,31 +95,30 @@
     }
 
     window.onclick = function (event) {
-        if (event.target == document.getElementById("modal")) {
+        if (event.target === document.getElementById("modal")) {
             document.getElementById("modal").style.display = "none";
         }
     }
 
     function submitForm(event) {
         event.preventDefault();
-        var form = document.getElementById('acc_round');
-        var formData = new FormData(form);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../log_in.php', true);
+        let form = document.getElementById('acc_round');
+        let formData = new FormData(form);
 
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '../sign_in.php', true);
         xhr.onload = function () {
             if (xhr.status >= 200 && xhr.status < 400) {
-                var response = xhr.responseText;
+                let response = xhr.responseText;
                 if (response.includes('Ошибка')) {
                     showModal(response);
                 } else {
-                console.error('Произошла ошибка при отправке запроса.');
+                    window.location.href = 'logIn.php';
+                }
             }
-        };
-        xhr.onerror = function () {
-            console.error('Произошла ошибка при отправке запроса.');
-        };
+        }
+
         xhr.send(formData);
     }
 
