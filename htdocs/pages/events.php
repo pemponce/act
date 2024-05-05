@@ -86,11 +86,12 @@
 </style>
 
 <script>
+
     // Функция для отображения модального окна и заполнения информацией о мероприятии
-    function showModal(name, startDate, endDate, address, location, description, resources, organizer, contactInfo) {
+    function showModal(name, startDate, endDate, calc, address, location, description, resources, organizer, contactInfo) {
         // Заполнение информации о мероприятии
         document.getElementById("modal-title").innerHTML = name;
-        document.getElementById("modal-date").innerHTML = "Дата: " + startDate + " - " + endDate;
+        document.getElementById("modal-date").innerHTML = "Дата: " + startDate + " - " + endDate + " (Длительность мероприятия в днях " + calc + ")";
         document.getElementById("modal-location").innerHTML = "Место проведения: " + address + " (" + location + ")";
         document.getElementById("modal-description").innerHTML = "Описание: " + description;
         document.getElementById("modal-resources").innerHTML = "Рекомендации: " + resources;

@@ -8,7 +8,7 @@ if (!isset($_SESSION['login_user'])) {
 }
 
 // Подключение к базе данных (замените данными вашей базы)
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "a785410a";
 $dbname = "events";

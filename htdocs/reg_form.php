@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Подключение к базе данных
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $username = "root"; // Замените на ваше имя пользователя
     $password = "a785410a"; // Замените на ваш пароль
     $dbname = "events"; // Замените на имя вашей базы данных

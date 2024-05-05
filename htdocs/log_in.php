@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "a785410a";
 $dbname = "events";
@@ -29,8 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             header("location: pages/home.php");
         } else {
             $error = "Неправильное имя пользователя или пароль";
+            header("location: pages/logIn.php");
         }
     } else {
+        header("location: pages/logIn.php");
         $error = "Неправильное имя пользователя или пароль";
     }
     $conn->close();

@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "a785410a";
 $dbname = "events";
@@ -16,12 +16,15 @@ $offset = ($page - 1) * $limit;
 
 $sql = "SELECT e.id, e.name AS event_name, e.start_date, e.end_date, e.description AS event_description, 
                l.address, l.name AS location_name, 
-               o.name AS organizer_name, o.contact_info, t.name AS topic_name, t.description AS topic_description
+               o.name AS organizer_name, o.contact_info AS contact_info, t.name AS topic_name, t.description AS topic_description,
+               calculate_duration(e.start_date, e.end_date) AS event_duration
         FROM event e
         INNER JOIN location l ON e.id = l.event_id 
         INNER JOIN organizer o ON e.id = o.event_id
         INNER JOIN topic t ON e.id = t.event_id
+        ORDER BY e.id DESC
         LIMIT $limit OFFSET $offset";
+
 
 $result = $conn->query($sql);
 
@@ -37,6 +40,9 @@ if ($result->num_rows > 0) {
         echo "<p>Дата: " . date("d.m", strtotime($row["start_date"])) . " - " . date("d.m", strtotime($row["end_date"])) . "</p>";
         echo "<p>Место: " . $row["address"] . "</p>";
         echo "<p>Организатор: " . $row["organizer_name"] . "</p>";
+
+        // Преобразование event_duration из часов в дни
+        $event_duration_days = intval($row["event_duration"]) / 24;
 
         // Обновленный SQL-запрос для выборки данных из таблицы resources
         $sql_resources = "SELECT description FROM resource WHERE event_id = " . $row['id'];
@@ -60,9 +66,10 @@ if ($result->num_rows > 0) {
 
         // Добавляем кнопку "Подробнее" с вызовом JavaScript функции для отображения дополнительной информации
         echo "<div class='button-container'>";
+
         echo "<button class='register-button' style='margin: auto 10px;' onclick=\"showModal('" . $row["event_name"] . "',
-         '" . date("d.m", strtotime($row["start_date"])) . "', '" . date("d.m", strtotime($row["end_date"])) . "', '" . $row["address"] . "', '" . $row["location_name"] . "' ,
-          '" . $row["topic_description"] . "', '" . $resource_description . "', '" . $row["organizer_name"] . "', '" . $row["contact_info"] . "')\">Подробнее</button>";
+     '" . date("d.m", strtotime($row["start_date"])) . "', '" . date("d.m", strtotime($row["end_date"])) . "', '" . $event_duration_days . "', '" . $row["address"] . "', '" . $row["location_name"] . "' ,
+      '" . $row["topic_description"] . "', '" . $resource_description . "', '" . $row["organizer_name"] . "', '" . $row["contact_info"] . "')\">Подробнее</button>";
 
         // Добавляем кнопку "Зарегистрироваться" с ссылкой на форму регистрации события
         echo "<a href='registration_form.php?event_id=" . $row["id"] . " ' class='register-button' style='margin: auto 10px;'>Зарегистрироваться</a>";

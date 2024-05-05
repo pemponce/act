@@ -1,7 +1,6 @@
 <?php
-session_start(); // Начинаем сеанс
 
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "a785410a";
 $dbname = "events";
@@ -52,15 +51,10 @@ if ($stmt_event->execute()) {
 
             if ($stmt_topic->execute()) {
                 // Вставка данных в таблицу session
-                $sql_session = "INSERT INTO session (event_id, name, event_time, description) VALUES (?, ?, ?, ?)";
-                $start_date = $_POST['start_date'];
-                $end_date = $_POST['end_date'];
-                $start_date = date("Y-m-d", strtotime($start_date));
-                $end_date = date("Y-m-d", strtotime($end_date));
-                $event_time = (strtotime($end_date) - strtotime($start_date)) / (60 * 60 * 24);
+                $sql_session = "INSERT INTO session (event_id, name, description) VALUES (?, ?, ?)";
 
                 $stmt_session = $conn->prepare($sql_session);
-                $stmt_session->bind_param("isds", $last_event_id, $event_name, $event_time, $description);
+                $stmt_session->bind_param("iss", $last_event_id, $event_name, $description);
 
                 if ($stmt_session->execute()) {
                     // Вставка данных в таблицу resource

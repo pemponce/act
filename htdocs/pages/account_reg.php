@@ -28,11 +28,11 @@
         <h2>Регистрация</h2>
 
         <form id="acc_round" method="POST" onsubmit="submitForm(event)">
-            <input type="text" id="username" name="username" required><br>
-            <input type="password" id="password" name="password" required><br>
-            <input type="text" id="full_name" name="full_name" required><br>
-            <input type="text" id="gender" name="gender" required><br>
-            <input type="text" id="contact_info" name="contact_info" required><br>
+            <input type="text" id="username" name="username" placeholder="ваш_никнейм" required><br>
+            <input type="password" id="password" name="password" placeholder="пароль" required><br>
+            <input type="text" id="full_name" name="full_name" placeholder="ФИО" required><br>
+            <input type="text" id="gender" name="gender" placeholder="пол" required><br>
+            <input type="text" id="contact_info" name="contact_info" placeholder="ваш_номер_телефона" required><br>
             <input type="submit" id="register" name="register" value="Зарегистрироваться">
         </form>
     </div>
