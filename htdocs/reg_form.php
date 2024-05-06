@@ -22,13 +22,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Подключение к базе данных
     $servername = "127.0.0.1";
-    $username = "root"; // Замените на ваше имя пользователя
-    $password = "a785410a"; // Замените на ваш пароль
-    $dbname = "events"; // Замените на имя вашей базы данных
+    $username = "root";
+    $password = "a785410a";
+    $dbname = "events";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Проверка соединения
     if ($conn->connect_error) {
         die("Ошибка подключения: " . $conn->connect_error);
     }
